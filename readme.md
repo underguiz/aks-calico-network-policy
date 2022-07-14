@@ -13,6 +13,16 @@ _When you run modern, microservices-based applications in Kubernetes, you often 
 
 ### Usage
 
+Create the infrastructure
+
+```
+$ az login
+$ cd terraform
+$ terraform plan -var 'network-policy-demo-rg=<resource_group_name>'
+$ terrafom apply -var 'network-policy-demo-rg=<resource_group_name>'
+$ az aks get-credentials --name network-policy-demo --resource-group <resource_group_name>
+```
+
 Deploy the Vote App to both **development** and **production** namespaces
 
 ```
