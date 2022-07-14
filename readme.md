@@ -15,14 +15,12 @@ _When you run modern, microservices-based applications in Kubernetes, you often 
 
 Deploy the Vote App to both **development** and **production** namespaces
 
-Both namespaces now have a Frontend App and Redis as their backend.
-
 ```
 $ kubectl apply -f vote-app-development.yaml
 $ kubectl apply -f vote-app-production.yaml
 ```
 
-Let's access the applications using their EXTERNAL-IP.
+Both namespaces now have a Frontend App and Redis as their backend. Let's access the applications using their EXTERNAL-IP.
 
 ```
 $ kubectl get svc --all-namespaces -l app=azure-vote-front
@@ -63,7 +61,7 @@ $ kubectl exec -n development -ti deployment/azure-vote-front -- /bin/bash
 $ python3  -c "import redis ; r = redis.Redis(host='azure-vote-back.production.svc.cluster.local', port=6379, socket_timeout=5) ; dogs = r.get('Dogs').decode('utf-8') ; print(dogs)"
 ```
 
-While we're at it, let's go ahead and also deny traffic from the production environment to our Development Redis.
+While we're at it, let's go ahead and also deny traffic from the production environment to our development Redis.
 
 ```
 $ kubectl apply -f network-policy-development.yaml
